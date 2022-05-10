@@ -37,7 +37,7 @@ Or use the enormous script!
 # git clone https://github.com/sickcodes/bulk-whois.git
 # cd bulk-whois
 
-INPUT_FILE=${1}
+INPUT_FILE="${1}"
 
 [ -z "$INPUT_FILE" ] && echo 'Usage: ./bulk-whois.sh domains.txt' && exit 1
 

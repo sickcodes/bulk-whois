@@ -14,7 +14,12 @@ INPUT_FILE="${1}"
 mkdir -p ./output
 
 while read -r WHO; do
-    WHO="$(basename "${WHO}")"
-    whois "${WHO}" >>  "output/${WHO}.txt"
-    echo "$? ${WHO}"
+    WHO="${WHO//www\./}"
+    WHO=${WHO//${WHO#*\.*/}/}
+    WHO=$(basename "${WHO}")
+    echo "${WHO}"
+    { 
+        whois "${WHO}" >> "output/${WHO}.txt" \
+        && echo "$? ${WHO}" \
+    ; } &
 done < "${INPUT_FILE}"
